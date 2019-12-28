@@ -1,0 +1,16 @@
+@import "scss/media";
+
+.statistics-container {
+    height: 100%;
+    padding: 2.5rem !important;
+
+    @include respond-below(lg) {
+        padding: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+        font-weight: 300;
+        margin-bottom: 1.35rem;
+    }
+}

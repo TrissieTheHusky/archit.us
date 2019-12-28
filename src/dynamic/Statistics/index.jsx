@@ -1,14 +1,23 @@
 import React from "react";
-import { Container, Badge } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import Counter from "components/Counter";
+import Histogram from "components/Histogram";
+import PropTypes from "prop-types";
+import "./style.scss";
 
-function Statistics() {
+function Statistics({ guildId }) {
   return (
-    <Container className="py-5">
-      <h2>
-        Statistics <Badge variant="primary">Coming Soon</Badge>
-      </h2>
+    <Container className="statistics-container" fluid>
+      <h2>Statistics</h2>
+      <Counter value={1000} title={"Members"} />
+      <Counter value={1000000} title={"Messages"} />
+      <Histogram />
     </Container>
   );
 }
 
 export default Statistics;
+
+Statistics.propTypes = {
+  guildId: PropTypes.string
+};
