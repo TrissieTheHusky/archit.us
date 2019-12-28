@@ -8,10 +8,17 @@ import {
   YAxis
 } from "react-vis";
 import useDarkMode from "use-dark-mode";
+import { primaryColor, lightColor, darkColor } from "global.json";
 import "./style.scss";
 
 const Histogram = () => {
   const { value } = useDarkMode(true);
+
+  const axesStyle = {
+    text: {
+      stroke: value ? lightColor : darkColor
+    }
+  };
 
   const myData = [
     { x: 0, x0: 1, y: 10, y0: 0 },
@@ -21,11 +28,13 @@ const Histogram = () => {
   return (
     <div className="chart-container">
       <XYPlot width={300} height={300}>
-        <VerticalRectSeries data={myData} color={"#6496c4"} />
-        <HorizontalGridLines style={{ stroke: "white" }} />
-        <VerticalGridLines style={{ stroke: "white" }} />
-        <XAxis />
-        <YAxis />
+        <VerticalRectSeries data={myData} color={primaryColor} />
+        <HorizontalGridLines
+          style={{ stroke: value ? lightColor : darkColor }}
+        />
+        <VerticalGridLines style={{ stroke: value ? lightColor : darkColor }} />
+        <XAxis style={axesStyle} />
+        <YAxis style={axesStyle} />
       </XYPlot>
     </div>
   );
