@@ -1,16 +1,18 @@
 import React from "react";
 import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  VerticalRectSeries,
+  HorizontalGridLines,
   VerticalGridLines,
-  HorizontalGridLines
+  VerticalRectSeries,
+  XAxis,
+  XYPlot,
+  YAxis
 } from "react-vis";
-import { Container } from "react-bootstrap";
+import useDarkMode from "use-dark-mode";
 import "./style.scss";
 
 const Histogram = () => {
+  const { value } = useDarkMode(true);
+
   const myData = [
     { x: 0, x0: 1, y: 10, y0: 0 },
     { x: 1, x0: 2, y: 5, y0: 0 },
