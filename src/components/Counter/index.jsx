@@ -6,8 +6,8 @@ import "./style.scss";
 const Counter = ({ value, title }) => {
   return (
     <div className="counter-container">
+      <p className="title">{title}</p>
       <CountUp start={0} end={value} duration={2} redraw={true} />
-      <h2>{title}</h2>
     </div>
   );
 };

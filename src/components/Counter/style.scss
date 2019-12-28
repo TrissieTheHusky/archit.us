@@ -1,5 +1,9 @@
 .counter-container {
+    width: 50%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+
+    .title {
+        padding-right: 1em;
+    }
 }
