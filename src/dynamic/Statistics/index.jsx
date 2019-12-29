@@ -24,8 +24,10 @@ function Statistics({ guildId }) {
   return (
     <Container className="statistics-container" fluid>
       <h2>Statistics</h2>
-      <Counter value={memberCount} title={"Members"} />
-      <Counter value={messageCount} title={"Messages"} />
+      <div className="counters">
+        <Counter value={memberCount} title={"Members"} />
+        <Counter value={messageCount} title={"Messages"} />
+      </div>
       <Histogram />
     </Container>
   );

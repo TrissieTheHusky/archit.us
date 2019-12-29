@@ -18,10 +18,13 @@ const Histogram = () => {
     text: {
       fill: value ? lightColor : darkColor,
       fontWeight: 300
+    },
+    ticks: {
+      fill: value ? lightColor : darkColor
     }
   };
 
-  const gridStyle = { stroke: value ? lightColor : darkColor, fontWeight: 200 };
+  const gridStyle = { stroke: value ? lightColor : darkColor };
 
   const myData = [
     { x: 0, x0: 1, y: 10, y0: 0 },
@@ -30,7 +33,7 @@ const Histogram = () => {
   ];
   return (
     <div className="chart-container">
-      <XYPlot width={300} height={300}>
+      <XYPlot xDomain={[0, 8]} width={300} height={300}>
         <VerticalRectSeries data={myData} color={primaryColor} />
         <HorizontalGridLines style={gridStyle} />
         <VerticalGridLines style={gridStyle} />

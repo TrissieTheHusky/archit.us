@@ -6,8 +6,14 @@ import "./style.scss";
 const Counter = ({ value, title }) => {
   return (
     <div className="counter-container">
-      <p className="title">{title}</p>
-      <CountUp start={0} end={value} duration={2} redraw={true} />
+      <CountUp
+        start={0}
+        end={value}
+        duration={2}
+        redraw={true}
+        className="count"
+      />
+      <p className="title">{title.toUpperCase()}</p>
     </div>
   );
 };
