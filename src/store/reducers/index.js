@@ -7,6 +7,7 @@ import * as guilds from "./guilds";
 import * as guild_count from "./guild_count";
 import * as responses from "./responses";
 import * as notifications from "./notifications";
+import * as stats from "./stats";
 
 const reducers = {
   session,
@@ -16,7 +17,8 @@ const reducers = {
   guilds,
   responses,
   guild_count,
-  notifications
+  notifications,
+  stats
 };
 
 export const initialState = Object.assign(

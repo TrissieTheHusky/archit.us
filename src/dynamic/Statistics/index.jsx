@@ -1,11 +1,19 @@
-import React from "react";
-import { Container } from "react-bootstrap";
 import Counter from "components/Counter";
 import Histogram from "components/Histogram";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+import { Container } from "react-bootstrap";
+import { getGuildStats } from "store/actions";
+import { useDispatch } from "react-redux";
 import "./style.scss";
 
 function Statistics({ guildId }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGuildStats(guildId));
+  }, []);
+
   return (
     <Container className="statistics-container" fluid>
       <h2>Statistics</h2>

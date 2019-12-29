@@ -4,6 +4,7 @@ import {
   IDENTIFY_SESSION,
   GET_GUILDS,
   GET_GUILD_COUNT,
+  GET_GUILD_STATS,
   GET_RESPONSES,
   ADD_RESPONSE,
   EDIT_RESPONSE,
@@ -18,6 +19,7 @@ export const LOAD_SESSION = "LOAD_SESSION";
 export const LOAD_GUILDS = "LOAD_GUILDS";
 export const LOAD_RESPONSES = "LOAD_RESPONSES";
 export const LOAD_GUILD_COUNT = "LOAD_GUILD_COUNT";
+export const LOAD_GUILD_STATS = "LOAD_GUILD_STATS";
 export const LOCAL_ADD_RESPONSE = "LOCAL_ADD_RESPONSE";
 export const LOCAL_EDIT_RESPONSE = "LOCAL_EDIT_RESPONSE";
 export const LOCAL_DELETE_RESPONSE = "LOCAL_DELETE_RESPONSE";
@@ -213,6 +215,15 @@ export function getGuildCount() {
   });
 }
 
+export function getGuildStats(guildId) {
+  log("Getting guild stats");
+  return apiAction({
+    url: `https://api.develop.archit.us/stats/${guildId}`,
+    onSuccess: data => loadGuildStats(data),
+    label: GET_GUILD_STATS
+  });
+}
+
 export function getResponses(accessToken, guildId) {
   log(`Getting auto responses for ${guildId}`);
   return authApiAction(accessToken, {
@@ -307,6 +318,17 @@ export function loadGuildCount(data) {
     type: LOAD_GUILD_COUNT,
     payload: {
       guildCount: data
+    }
+  };
+}
+
+export function loadGuildStats(data) {
+  log("Loading guild stats");
+  return {
+    type: LOAD_GUILD_STATS,
+    payload: {
+      memberCount: data.members.count,
+      messageCount: data.messages.count
     }
   };
 }
