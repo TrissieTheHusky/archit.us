@@ -328,7 +328,11 @@ export function loadGuildStats(data) {
     type: LOAD_GUILD_STATS,
     payload: {
       memberCount: data.members.count,
-      messageCount: data.messages.count
+      messageCount: data.messages.count,
+      channelCount: Object.keys(data.messages.channels).length,
+      channels: data.messages.channels,
+      members: data.messages.members,
+      times: data.messages.times
     }
   };
 }

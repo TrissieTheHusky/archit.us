@@ -1,5 +1,6 @@
 import Counter from "components/Counter";
 import Histogram from "components/Histogram";
+import Card from "components/Card";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
@@ -10,10 +11,12 @@ import "./style.scss";
 function Statistics({ guildId }) {
   const dispatch = useDispatch();
 
-  const { memberCount, messageCount } = useSelector(state => {
+  const { memberCount, messageCount, channelCount } = useSelector(state => {
+    const { memberCount, messageCount, channelCount } = state.stats;
     return {
-      memberCount: state.stats.memberCount,
-      messageCount: state.stats.messageCount
+      memberCount,
+      messageCount,
+      channelCount
     };
   });
 
@@ -21,13 +24,18 @@ function Statistics({ guildId }) {
     dispatch(getGuildStats(guildId));
   }, [guildId]);
 
+  const CardHeader = <h3 className="card-header">At A Glance</h3>;
+
   return (
     <Container className="statistics-container" fluid>
       <h2>Statistics</h2>
-      <div className="counters">
-        <Counter value={memberCount} title={"Members"} />
-        <Counter value={messageCount} title={"Messages"} />
-      </div>
+      <Card header={CardHeader}>
+        <div className="counters">
+          <Counter value={memberCount} title={"Members"} />
+          <Counter value={messageCount} title={"Messages"} />
+          <Counter value={channelCount} title={"Channels"} />
+        </div>
+      </Card>
       <Histogram />
     </Container>
   );
