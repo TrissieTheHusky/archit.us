@@ -1,14 +1,15 @@
 import React from "react";
-import {
-  HorizontalGridLines,
-  VerticalGridLines,
-  VerticalRectSeries,
-  XAxis,
-  XYPlot,
-  YAxis
-} from "react-vis";
 import useDarkMode from "use-dark-mode";
 import { primaryColor, lightColor, darkColor } from "global.json";
+import {
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Bar,
+  Legend,
+  Tooltip
+} from "recharts";
 import "./style.scss";
 
 const Histogram = () => {
@@ -26,21 +27,35 @@ const Histogram = () => {
 
   const gridStyle = { stroke: value ? lightColor : darkColor };
 
-  const myData = [
-    { x0: 1, x: 2, y: 12 },
-    { x0: 2, x: 4, y: 2 },
-    { x0: 5, x: 6, y: 15 }
+  const data = [
+    {
+      name: "Page A",
+      uv: 4000
+    },
+    {
+      name: "Page B",
+      uv: 3000
+    },
+    {
+      name: "Page C",
+      uv: 2000
+    }
   ];
 
   return (
     <div className="chart-container">
-      <XYPlot width={300} height={300}>
-        <HorizontalGridLines style={gridStyle} />
-        <VerticalGridLines style={gridStyle} />
-        <XAxis style={axesStyle} tickValues={[0, 1, 3, 4, 5]} />
-        <YAxis style={axesStyle} />
-        <VerticalRectSeries data={myData} color={primaryColor} />
-      </XYPlot>
+      <BarChart width={730} height={300} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+
+        <Bar
+          dataKey="uv"
+          fill={primaryColor}
+          isAnimationActive={true}
+          animationDuration={6000}
+        />
+      </BarChart>
     </div>
   );
 };
